@@ -13,7 +13,11 @@ import {
 function SignUp() {
   const customStyles = {
     body: {
-      background: 'linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))',
+     // background: 'linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))',
+    backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/f/f6/Blood_donation_%28at_a_%22bloodmobile%22%29.JPG")', // Reference the image from the public folder
+    backgroundSize: 'cover', // Ensures the image covers the entire background
+    backgroundRepeat: 'no-repeat', // Prevents the image from repeating
+    backgroundPosition: 'center',
     },
     hCustom: {
       height: '100vh',
@@ -22,7 +26,7 @@ function SignUp() {
       borderRadius: '15px',
     },
     bgIndigo: {
-      backgroundColor: '#4835d4',
+      backgroundColor: '#F7CAC9',
     },
     bgWhite: {
       backgroundColor: 'white',
@@ -30,8 +34,11 @@ function SignUp() {
     textWhite: {
       color: 'white',
     },
+    bgBlue: {
+      backgroundColor: '#E0E5E5',
+    }
   };
-
+  
   return (
     <MDBContainer fluid style={customStyles.body} className="h-custom">
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -41,7 +48,7 @@ function SignUp() {
               <MDBRow>
                 <MDBCol md="6" className="p-5" style={customStyles.bgWhite}>
                   <h3 className="fw-normal mb-5" style={{ color: '#4835d4' }}>
-                    General Information
+                    Organization Registration 
                   </h3>
                   <div className="mb-4">
                     <label className="form-label">Name</label>
@@ -63,45 +70,63 @@ function SignUp() {
                   <MDBInput wrapperClass="mb-4" label="Address Line 2" size="lg" id="form3" type="text" />
                   <MDBRow>
                     <MDBCol md="6">
-                      <MDBInput wrapperClass="mb-4" label="Contact" size="lg" id="form4" type="text" />
+                      <MDBInput wrapperClass="mb-4" label="Contact" size="lg" id="form4" type="phone" />
                     </MDBCol>
                     <MDBCol md="6">
                       <div className="mb-4">
-                        <label className="form-label">Employees</label>
-                        <select className="form-select" size="lg">
-                          <option value="1">Employees</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                          <option value="4">Four</option>
-                        </select>
+                      <MDBInput wrapperClass="mb-4" label="Hospital Name" size="lg" id="form3" type="text" />
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6">
+                      <div className="mb-4">
+                      <MDBInput wrapperClass="mb-4" label="State" size="lg" id="form3" type="text" />
+                      </div>
+                    </MDBCol>
+                    <MDBCol md="6">
+                      <div className="mb-4">
+                      <MDBInput wrapperClass="mb-4" label="District" size="lg" id="form3" type="text" />
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6">
+                      <div className="mb-4">
+                      <MDBInput wrapperClass="mb-4" label="Date of Establishment" size="lg" id="form3" type="date" />
+                      </div>
+                    </MDBCol>
+                    <MDBCol md="6">
+                      <div className="mb-4">
+                      <MDBInput wrapperClass="mb-4" label="Hospital Type" size="lg" id="form3" type="text" />
                       </div>
                     </MDBCol>
                   </MDBRow>
                 </MDBCol>
                 <MDBCol md="6" className="p-5" style={customStyles.bgIndigo}>
                   <h3 className="fw-normal mb-5" style={customStyles.textWhite}>
-                    Contact Details
+                    Other Details
                   </h3>
-                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Street + Nr" size="lg" id="form5" type="text" />
-                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Additional Information" size="lg" id="form6" type="text" />
+                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Accerdation" size="lg" id="form5" type="text" />
+                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="ICU Available " size="lg" id="form6" type="text" />
                   <MDBRow>
                     <MDBCol md="5">
-                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Zip Code" size="lg" id="form6" type="text" />
+                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Bed Capacity" size="lg" id="form6" type="numBER" />
                     </MDBCol>
                     <MDBCol md="7">
-                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Place" size="lg" id="form7" type="text" />
+                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Ambulance" size="lg" id="form7" type="text" />
                     </MDBCol>
                   </MDBRow>
-                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Country" size="lg" id="form8" type="text" />
+                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Pharmacy" size="lg" id="form8" type="text" />
                   <MDBRow>
                     <MDBCol md="5">
-                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Code +" size="lg" id="form9" type="text" />
+                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Number of OT" size="lg" id="form9" type="number" />
                     </MDBCol>
                     <MDBCol md="7">
-                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Phone Number" size="lg" id="form10" type="text" />
+                      <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Blood Bank" size="lg" id="form10" type="text" />
                     </MDBCol>
                   </MDBRow>
-                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Your Email" size="lg" id="form8" type="email" />
+                  <MDBInput wrapperClass="mb-4" labelClass="text-white" label="Emergency Service" size="lg" id="form8" type="email" />
                   <MDBCheckbox name="flexCheck" id="flexCheckDefault" labelClass="text-white mb-4" label="I do accept the Terms and Conditions of your site." />
                   <MDBBtn color="light" size="lg">
                     Register
