@@ -1,0 +1,81 @@
+/* Apply to the root container */
+.sign-up-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 90px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* General Information and Contact Details sections */
+  .general-info,
+  .contact-details {
+    flex: 1;
+    min-width: 280px; /* For responsiveness */
+  }
+  
+  h2 {
+    color: #003399;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  /* Input fields and dropdowns */
+  input,
+  select,
+  button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px 22px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Button styles */
+  button {
+    background-color: #003399;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056d6;
+  }
+  
+  /* Checkbox and terms label */
+  label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+  
+  a {
+    color: #003399;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Phone section with code and number side by side */
+  .phone-section {
+    display: flex;
+    gap: 10px;
+  }
+  
+  input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+  

@@ -6,29 +6,40 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.1",
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@radix-ui/react-label": "^2.1.2",
+    "@tabler/icons-react": "^3.29.0",
+    "@toolpad/core": "^0.12.1",
+    "axios": "^1.8.0",
+    "bootstrap": "^5.3.4",
+    "clsx": "^2.1.1",
+    "cobe": "^0.6.2",
+    "dotenv": "^16.5.0",
+    "framer-motion": "^11.18.2",
     "mdb-react-ui-kit": "^9.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.0.2"
+    "mini-svg-data-uri": "^1.4.4",
+    "react": "^18.3.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^7.1.2",
+    "tailwind-merge": "3.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.15.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.12.0",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.16",
-    "vite": "^6.0.1"
+    "@eslint/js": "^9.19.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^4.1.6",
+    "vite": "^6.3.5"
   }
 }
