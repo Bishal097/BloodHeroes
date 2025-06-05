@@ -29,14 +29,14 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',  // For local development, set base to root ("/")
+  base: '/BloodHeroes/',  // For local development, set base to root ("/")
   plugins: [react()],
-  build: {
-    outDir: 'dist',  // Ensure the build output goes to the dist folder
-    sourcemap: true, // Enable sourcemaps for debugging
-  },
-  server: {
-    open: true, // Automatically open the browser when running the dev server
-    port: 5173, // Set the port for the development server
-  },
+  // build: {
+  //   outDir: 'dist',  // Ensure the build output goes to the dist folder
+  //   sourcemap: true, // Enable sourcemaps for debugging
+  // },
+  // server: {
+  //   open: true, // Automatically open the browser when running the dev server
+  //   port: 5173, // Set the port for the development server
+  // },
 });
