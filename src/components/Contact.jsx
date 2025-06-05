@@ -1,4 +1,39 @@
 import React from "react";
+import image11 from "../assets/images/image11.jpg";
+import image12 from "../assets/images/image12.jpg";
+import image13 from "../assets/images/image13.jpg";
+import image14 from "../assets/images/image14.jpg";
+
+const team = [
+  { 
+    name: "Md Asad Ali Haider", 
+    role: "Full Stack Developer", 
+    imgSrc: image11, 
+    description: "Passionate about building scalable web applications and exploring new technologies.",
+    linkedIn: "https://www.linkedin.com/in/md-asad-ali-haidar-7aab43199/"
+  },
+  { 
+    name: "Bishal Bhattacharjee", 
+    role: "Full Stack Developer", 
+    imgSrc: image14, 
+    description: "Driven by a love for coding and creating intuitive user experiences. with competitive coding skills.",
+    linkedIn: "https://www.linkedin.com/in/bishal-bhattacharjee-805769232/"
+  },
+  { 
+    name: "Aditya Shaw", 
+    role: "Frontend Developer", 
+    imgSrc: image12, 
+    description: "Specializes in crafting visually stunning and responsive web designs.",
+    linkedIn: "https://www.linkedin.com/in/aditya-shaw-216171224/"
+  },
+  { 
+    name: "Md Amir Khan", 
+    role: "Frontend Developer", 
+    imgSrc: image13, 
+    description: "Enthusiastic about modern JavaScript frameworks and clean UI development.",
+    linkedIn: "https://www.linkedin.com/in/md-amir-khan-a0849a236/"
+  },
+];
 
 const ContactUs = () => {
   return (
@@ -11,40 +46,11 @@ const ContactUs = () => {
           </p>
         </div>
         <div className="flex flex-wrap -m-4">
-          {[
-            { 
-              name: "Md Asad Ali Haider", 
-              role: "Full Stack Developer", 
-              imgSrc: "image11.jpg", 
-              description: "Passionate about building scalable web applications and exploring new technologies.",
-              linkedIn: "https://www.linkedin.com/in/md-asad-ali-haidar-7aab43199/"
-            },
-            { 
-              name: "Bishal Bhattacharjee", 
-              role: "Full Stack Developer", 
-              imgSrc: "image14.jpg", 
-              description: "Driven by a love for coding and creating intuitive user experiences. with compettive coding skills.",
-              linkedIn: "https://www.linkedin.com/in/bishal-bhattacharjee-805769232/"
-            },
-            { 
-              name: "Aditya Shaw", 
-              role: "Frontend Developer", 
-              imgSrc: "image12.jpg", 
-              description: "Specializes in crafting visually stunning and responsive web designs.",
-              linkedIn: "https://www.linkedin.com/in/aditya-shaw-216171224/"
-            },
-            { 
-              name: "Md Amir Khan", 
-              role: "Frontend Developer", 
-              imgSrc: "image13.jpg", 
-              description: "Enthusiastic about modern JavaScript frameworks and clean UI development.",
-              linkedIn: "https://www.linkedin.com/in/md-amir-khan-a0849a236/"
-            },
-          ].map((member, index) => (
+          {team.map((member, index) => (
             <div key={index} className="p-4 lg:w-1/4 md:w-1/2">
               <div className="h-full flex flex-col items-center text-center">
                 <img
-                  alt="team"
+                  alt={member.name}
                   className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
                   src={member.imgSrc}
                 />
@@ -53,8 +59,14 @@ const ContactUs = () => {
                   <h3 className="text-gray-500 mb-3">{member.role}</h3>
                   <p className="mb-4">{member.description}</p>
                   <span className="inline-flex">
-                    {/* LinkedIn Logo */}
-                    <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" className="text-gray-500">
+                    {/* LinkedIn Icon */}
+                    <a
+                      href={member.linkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500"
+                      aria-label={`${member.name} LinkedIn`}
+                    >
                       <svg
                         fill="none"
                         stroke="currentColor"
@@ -67,8 +79,14 @@ const ContactUs = () => {
                         <path d="M19 0h-14C4.447 0 4 0.447 4 1v22c0 .553.447 1 1 1h14c.553 0 1-.447 1-1V1c0-.553-.447-1-1-1zm-7 18h-3v-7h3v7zm-1.5-8.167c-.823 0-1.5-.677-1.5-1.5 0-.823.677-1.5 1.5-1.5s1.5.677 1.5 1.5c0 .823-.677 1.5-1.5 1.5zm7.5 8.167h-3v-4.5c0-2.406-3-2.225-3 0v4.5h-3V9h3v1.5c0 3 5 3.332 5-1.5V9h3v9.833z"></path>
                       </svg>
                     </a>
-                    {/* Add a second social icon, such as GitHub */}
-                    <a href={`https://github.com/${member.name.split(' ').join('').toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="ml-2 text-gray-500">
+                    {/* GitHub Icon */}
+                    <a
+                      href={`https://github.com/${member.name.split(' ').join('').toLowerCase()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-2 text-gray-500"
+                      aria-label={`${member.name} GitHub`}
+                    >
                       <svg
                         fill="none"
                         stroke="currentColor"

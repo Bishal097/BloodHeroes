@@ -104,19 +104,23 @@ import HospitalVer from './components/HospitalVer';
 import ForgotPass from './components/ForgotPass';
 import OrgCamp from './components/OrgCamp';
 import RegCamp from './components/RegCamp';
+// App.jsx
+import image40 from './assets/images/image40.jpeg';
+import image41 from './assets/images/image41.jpeg';
+import image42 from './assets/images/image42.avif';
 
 const content = [
   {
     title: "Sri Mamata Banerjee Blood Heroes Initiative",
      description: "The Blood Heroes initiative was launched under the leadership of Hon'ble Chief Minister of West Bengal, Smt. Mamata Banerjee, with the aim to revolutionize the blood donation process and strengthen the healthcare system across the state. This initiative focuses on creating a robust, transparent, and accessible platform for voluntary blood donation, ensuring timely blood availability for patients in need.",
     // Path to the image in the public folder
-    image: '/image40.jpeg',
+    image: image40,
     content: "",
   },
   {
     title: "For the Blood Heroes",
     description: `The Blood Heroes initiative is committed to enhancing the healthcare system of West Bengal by ensuring timely and sufficient blood supply across all healthcare facilities. Under the leadership of Smt. Mamata Banerjee, the initiative has developed an efficient and transparent system to track blood donations, ensuring that the right blood reaches the right patients at the right time. This commitment to improving healthcare accessibility has made a significant impact in saving lives, especially during emergencies and natural disasters.`,
-image: '/image41.jpeg',
+image: image41,
    // Path to the image in the public folder
     content: "",
   },
@@ -124,7 +128,7 @@ image: '/image41.jpeg',
     title: "west Bengal Blood Heroes",
     description: `The Blood Heroes initiative regularly organizes state-wide blood donation campaigns under the guidance of the Chief Minister of West Bengal, Smt. Mamata Banerjee. These campaigns aim to encourage voluntary blood donation, raise awareness, and educate the masses about the critical need for blood donations. By engaging local communities and leveraging the power of digital platforms, these campaigns make it easier for people to donate blood regularly, ultimately ensuring a consistent and sustainable blood supply for healthcare facilities.`,
     // Path to the image in the public folder
-    image: '/image42.avif',
+    image: image42,
     content: "",
   },
 ];
@@ -174,7 +178,7 @@ const App = () => {
       <Navbar onLogout={handleLogout} />
       <div style={{ marginBottom: '65px' }}></div>   
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/BloodHeroes/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/donor-signup" element={<DonorSignUpPage />} />

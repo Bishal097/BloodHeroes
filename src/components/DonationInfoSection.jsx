@@ -1,6 +1,7 @@
-// DonationInformation.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import image9 from '../assets/images/image9.jpg';// ✅ Correct relative import
+
 const DonationInfoSection = () => {
   return (
     <div className="row" style={{ paddingTop: '4px' }}>
@@ -21,8 +22,8 @@ const DonationInfoSection = () => {
         >
           <picture>
             <img
-              src="/image9.jpg"
-              alt="One Donation Can save upto three lives"
+              src={image9} // ✅ Use the imported image
+              alt="One Donation Can Save Up to Three Lives"
               height="400"
             />
           </picture>
@@ -57,46 +58,14 @@ const DonationInfoSection = () => {
                 <td><b>Donate Blood To</b></td>
                 <td><b>Receive Blood From</b></td>
               </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>A+</b></span></td>
-                <td>A+ AB+</td>
-                <td>A+ A- O+ O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>O+</b></span></td>
-                <td>O+ A+ B+ AB+</td>
-                <td>O+ O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>B+</b></span></td>
-                <td>B+ AB+</td>
-                <td>B+ B- O+ O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>AB+</b></span></td>
-                <td>AB+</td>
-                <td>Everyone</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>A-</b></span></td>
-                <td>A+ A- AB+ AB-</td>
-                <td>A- O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>O-</b></span></td>
-                <td>Everyone</td>
-                <td>O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>B-</b></span></td>
-                <td>B+ B- AB+ AB-</td>
-                <td>B- O-</td>
-              </tr>
-              <tr>
-                <td><span style={{ color: '#961e1b' }}><b>AB-</b></span></td>
-                <td>AB+ AB-</td>
-                <td>AB- A- B- O-</td>
-              </tr>
+              <tr><td><b style={{ color: '#961e1b' }}>A+</b></td><td>A+ AB+</td><td>A+ A- O+ O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>O+</b></td><td>O+ A+ B+ AB+</td><td>O+ O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>B+</b></td><td>B+ AB+</td><td>B+ B- O+ O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>AB+</b></td><td>AB+</td><td>Everyone</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>A-</b></td><td>A+ A- AB+ AB-</td><td>A- O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>O-</b></td><td>Everyone</td><td>O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>B-</b></td><td>B+ B- AB+ AB-</td><td>B- O-</td></tr>
+              <tr><td><b style={{ color: '#961e1b' }}>AB-</b></td><td>AB+ AB-</td><td>AB- A- B- O-</td></tr>
             </tbody>
           </table>
         </div>

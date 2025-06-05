@@ -200,6 +200,7 @@ import HospitalDash from "./HospitalDash"; // Import the HospitalDash component
 import DonorDash from "./DonorDash"; // Import the DonorDash component
 import axios from 'axios';
 import AdminDash from "./AdminDash";
+import logo from '../assets/images/logo.png';
 function LoginPage() {
   const [showForm, setShowForm] = useState(false);
   const [email, setEmail] = useState(""); // For capturing email input
@@ -346,7 +347,7 @@ function LoginPage() {
         {/* Logo Image - Add image above the form */}
         <div style={{ textAlign: "center", marginBottom: "20px", marginLeft: "90px" }}>
           <img
-            src="/logo.png"
+            src={logo}
             alt="Logo"
             style={{ width: "150px", height: "auto" }}
           />

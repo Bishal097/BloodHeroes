@@ -7,35 +7,40 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import image1 from '../assets/images/image1.jpg';
+import image2 from '../assets/images/image2.jpg';
+import image3 from '../assets/images/image3.jpg';
+import image4 from '../assets/images/image4.jpg';
+import image5 from '../assets/images/image5.jpg';
 
 const GlimpsesSection = () => {
   const glimpsesData = [
     {
-      image: '/image1.jpg',
+      image: image1,
       title: 'Platelts',
       description: 'Checkout PLatelets.',
       animation: 'fadeInUp 1s',
     },
     {
-      image: '/image2.jpg',
+      image: image2,
       title: 'Blood',
       description: 'Checkout Bloods',
       animation: 'fadeInLeft 1s',
     },
     {
-      image: '/image3.jpg',
+      image: image3,
       title: 'Plasma',
       description: 'Checkout Plasma',
       animation: 'fadeInRight 1s',
     },
     {
-      image: '/image4.jpg',
+      image: image4,
       title: 'Red Blood Cells',
       description: 'Checkout Red Blood Cell',
       animation: 'zoomIn 1s',
     },
     {
-      image: '/image5.jpg',
+      image: image5,
       title: 'White Blood Cells',
       description: 'Checkout White Blood Cell',
       animation: 'bounceIn 1s',
