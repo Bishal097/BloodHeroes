@@ -12,7 +12,7 @@ const Search = () => {
   useEffect(() => {
     const fetchDistricts = async () => {
       try {
-        const response = await axios.get("https://bloodheroes.onrender.com/api/state-and-uts/West Bengal/districts");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/state-and-uts/West Bengal/districts`);
         console.log(response.data);
         setDistricts(response.data); // Assuming the response has an array of districts
       } catch (error) {
@@ -36,7 +36,7 @@ const Search = () => {
 
     try {
       // Replace with the actual API URL and pass query parameters for bloodType, district, and location
-      const response = await axios.get(`http://localhost:8080/api/public/search`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/public/search`, {
         params: {
           bloodType: bloodType,
           district: district,

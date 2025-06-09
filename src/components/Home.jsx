@@ -233,6 +233,7 @@ import CarouselSection from './CarouselSection';
 import  FeaturesSectionDemo  from './FeaturesSectionDemo';
 import GlimpsesSection from './GlimpsesSection';
 import InfiniteMovingCards from './infinite';
+import Note from './Note'; 
 //import FloatingDock from './FloatingDock';
 import Table from './Table';
 import Footer from './footer'
@@ -269,6 +270,7 @@ const Home = () => {
     <div>
       
       <CarouselSection />
+      <Note/>
       <div style={{ marginBottom: "20px" }}></div> 
       <DonationInfoSection />
       <GlimpsesSection/>
