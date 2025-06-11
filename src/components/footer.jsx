@@ -71,7 +71,7 @@ const Footer = () => {
                  
                 </li>
                 <li>
-                  
+                   
                     Blood Bank Directory
                   
                 </li>
