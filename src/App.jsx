@@ -104,6 +104,7 @@ import HospitalVer from './components/HospitalVer';
 import ForgotPass from './components/ForgotPass';
 import OrgCamp from './components/OrgCamp';
 import RegCamp from './components/RegCamp';
+import CheckBlood from './components/CheckBlood';
 // App.jsx
 import image40 from './assets/images/image40.jpeg';
 import image41 from './assets/images/image41.jpeg';
@@ -197,6 +198,16 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPass />} />
         <Route path="/org-camp" element={<OrgCamp />} />
         <Route path="/reg-camp" element={<RegCamp />} />
+        <Route path="/check-blood" element={<CheckBlood />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute
+              element={<Home />}
+              allowedUserType={auth.userType}
+            />
+          }
+        />
   
       </Routes>
     </Router>

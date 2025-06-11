@@ -46,22 +46,34 @@ const Footer = () => {
           <p>
             Donate blood, save lives. Together, we can make a difference—one drop at a time. Join the cause and be a hero for those in need ❤️.
           </p>
+          <a
+        href='https://docs.google.com/forms/d/e/1FAIpQLScQ-qLiXw7YzIJHrJPq5DLjDJ64D40D9iwyRLciZybyiqTV8g/viewform'
+        className='text-warning fw-bold'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        Feedback & Suggestions
+      </a>
         </section>
 
+   <section className='mb-4'>
+    <p><strong>What We Have For You</strong>
+    </p>
+   </section>
         <section>
           <MDBRow>
             <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
               <h5 className='text-uppercase'>Looking For Blood</h5>
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <Link to='/blood-availability' className='text-white'>
+                 
                     Blood Availability
-                  </Link>
+                 
                 </li>
                 <li>
-                  <Link to='/blood-bank-directory' className='text-white'>
+                  
                     Blood Bank Directory
-                  </Link>
+                  
                 </li>
               </ul>
             </MDBCol>
@@ -70,24 +82,24 @@ const Footer = () => {
               <h5 className='text-uppercase'>Want To Donate Blood</h5>
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <Link to='/donation-camps' className='text-white'>
+                 
                     Blood Donation Camps
-                  </Link>
+                  
                 </li>
                 <li>
-                  <Link to='/donor-login' className='text-white'>
+                  
                     Donor Login
-                  </Link>
+                  
                 </li>
                 <li>
-                  <Link to='/about-donation' className='text-white'>
+                  
                     About Blood Donation
-                  </Link>
+                 
                 </li>
                 <li>
-                  <Link to='/register-camp' className='text-white'>
+                  
                     Register VBD Camp
-                  </Link>
+                  
                 </li>
               </ul>
             </MDBCol>
@@ -96,14 +108,14 @@ const Footer = () => {
               <h5 className='text-uppercase'>Blood Donation Login</h5>
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <Link to='/admin-login' className='text-white'>
+                 
                     BloodHeroes Login
-                  </Link>
-                </li>
+                    </li>
+                  
                 <li>
-                  <Link to='/add-blood-bank' className='text-white'>
+                  
                     Add Your Blood Bank
-                  </Link>
+                
                 </li>
               </ul>
             </MDBCol>
@@ -112,19 +124,19 @@ const Footer = () => {
               <h5 className='text-uppercase'>About Us</h5>
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <Link to='/notifications' className='text-white'>
+                 
                     Notifications
-                  </Link>
+                  
                 </li>
                 <li>
-                  <Link to='/faq' className='text-white'>
+                  
                     BloodHeroes FAQ
-                  </Link>
+                  
                 </li>
                 <li>
-                  <Link to='/gallery' className='text-white'>
+                  
                     Gallery
-                  </Link>
+                  
                 </li>
               </ul>
             </MDBCol>

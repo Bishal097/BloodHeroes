@@ -355,8 +355,27 @@ export default function HospitalDash(props) {
             color="secondary"
             onClick={() => navigate('/org-camp')}
             startIcon={<DescriptionIcon />}
+            sx={{ marginRight: 2 }}
           >
             Organize Camp
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate('/reg-camp')}
+            startIcon={<DescriptionIcon />}
+            sx={{ marginRight: 2 }}
+          >
+            Active Camps
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate('/check-blood')}
+            startIcon={<DescriptionIcon />}
+            sx={{ marginRight: 2 }}
+          >
+            Blood Status
           </Button>
         </Box>
 

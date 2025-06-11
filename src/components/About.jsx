@@ -95,7 +95,7 @@ const About = ({ content, contentClassName }) => {
           {content[activeCard].content ?? null}
         </div>
       </motion.div>
-      <Footer /> {/* Ensure footer is placed at the bottom */}
+       {/* Ensure footer is placed at the bottom */}
     </>
   );
 };

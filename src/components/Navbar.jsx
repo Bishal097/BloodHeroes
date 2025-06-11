@@ -1,44 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import {
+  AppBar, Box, CssBaseline, Divider, Drawer,
+  IconButton, List, ListItem, ListItemButton,
+  ListItemText, Menu, MenuItem, Toolbar,
+  Typography, Button
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom'; // Import Link for routing
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import FAQ from './FAQ';
-import Gallery from './Gallery';
-import About from './About';
+import { Link, useNavigate } from 'react-router-dom';
+
 const drawerWidth = 240;
-const navItems = ['Home', 'Search', 'Contact', 'Login'];
 
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+  // Only check localStorage once on mount
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleDrawerToggle = () => setMobileOpen(prev => !prev);
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    navigate('/login');
+    setIsLoggedIn(false);
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const drawerNavItems = ['Home', 'Search', 'Contact'];
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -47,43 +43,44 @@ function Navbar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
+        {drawerNavItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <Link
                 to={`/${item.toLowerCase()}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
+                style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}
               >
                 <ListItemText primary={item} />
               </Link>
             </ListItemButton>
           </ListItem>
         ))}
-        {/* About Dropdown */}
         <ListItem disablePadding>
-          <ListItemButton
-            sx={{ textAlign: 'center' }}
-            onClick={handleClick}
-          >
+          <ListItemButton sx={{ textAlign: 'center' }} onClick={handleClick}>
             <ListItemText primary="About" />
           </ListItemButton>
         </ListItem>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose}>
-                <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>About BloodHeroes</Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link to="/Gallery" style={{ textDecoration: 'none', color: 'inherit' }}>Gallery</Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link to="/FAQ" style={{ textDecoration: 'none', color: 'inherit' }}>Blood Heroes FAQ</Link>
-              </MenuItem>
-        </Menu>
+        {isLoggedIn ? (
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }} onClick={handleLogout}>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
+        ) : (
+          <ListItem disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }}>
+              <Link to="/login" style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}>
+                <ListItemText primary="Login" />
+              </Link>
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        <MenuItem onClick={() => { handleClose(); navigate('/about'); }}>About BloodHeroes</MenuItem>
+        <MenuItem onClick={() => { handleClose(); navigate('/gallery'); }}>Gallery</MenuItem>
+        <MenuItem onClick={() => { handleClose(); navigate('/faq'); }}>Blood Heroes FAQ</MenuItem>
+      </Menu>
     </Box>
   );
 
@@ -96,7 +93,6 @@ function Navbar(props) {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
@@ -105,43 +101,31 @@ function Navbar(props) {
           </IconButton>
           <Typography
             variant="h6"
-            component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             Blood Heroes
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Button
-              sx={{ color: '#fff' }}
-              onClick={handleClick}
-            >
-              About
-            </Button>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-            <MenuItem onClick={handleClose}>
-                <Link to="/donation" style={{ textDecoration: 'none', color: 'inherit' }}>About BloodHeroes</Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link to="/Gallery" style={{ textDecoration: 'none', color: 'inherit' }}> Gallery</Link>
-              </MenuItem>
-              
-              <MenuItem onClick={handleClose}>
-                <Link to="/donation" style={{ textDecoration: 'none', color: 'inherit' }}>Blood Heroes FAQ</Link>
-              </MenuItem>
+            <Button sx={{ color: '#fff' }} onClick={handleClick}>About</Button>
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+              <MenuItem onClick={() => { handleClose(); navigate('/about'); }}>About BloodHeroes</MenuItem>
+              <MenuItem onClick={() => { handleClose(); navigate('/gallery'); }}>Gallery</MenuItem>
+              <MenuItem onClick={() => { handleClose(); navigate('/faq'); }}>Blood Heroes FAQ</MenuItem>
             </Menu>
-            {navItems.map((item) => (
+            {drawerNavItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
                 <Link to={`/${item.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   {item}
                 </Link>
               </Button>
             ))}
-            {/* About Dropdown for larger screens */}
-            
+            {isLoggedIn ? (
+              <Button onClick={handleLogout} sx={{ color: '#fff' }}>Logout</Button>
+            ) : (
+              <Button sx={{ color: '#fff' }}>
+                <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>Login</Link>
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
@@ -151,9 +135,7 @@ function Navbar(props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
