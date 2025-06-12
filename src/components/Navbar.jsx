@@ -7,7 +7,7 @@ import {
   Typography, Button
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -16,13 +16,14 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ Hook to detect route changes
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Only check localStorage once on mount
+  // ✅ Re-check token on every route change
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     setIsLoggedIn(!!token);
-  }, []);
+  }, [location]);
 
   const handleDrawerToggle = () => setMobileOpen(prev => !prev);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
