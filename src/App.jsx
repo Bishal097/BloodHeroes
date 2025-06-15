@@ -179,7 +179,7 @@ const App = () => {
       <Navbar onLogout={handleLogout} />
       <div style={{ marginBottom: '65px' }}></div>   
       <Routes>
-        <Route path="/BloodHeroes/" element={<Navigate to="/home" />} />
+        <Route path="/BloodHeroes" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/donor-signup" element={<DonorSignUpPage />} />
