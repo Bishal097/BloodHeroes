@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Search = () => {
-  const [formData, setFormData] = useState({ district: "", bloodType: ""});
+  const [formData, setFormData] = useState({ district: "", bloodType: "" });
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [districts, setDistricts] = useState([]); // State to store all districts
@@ -12,7 +12,9 @@ const Search = () => {
   useEffect(() => {
     const fetchDistricts = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/state-and-uts/West Bengal/districts`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/state-and-uts/West Bengal/districts`
+        );
         console.log(response.data);
         setDistricts(response.data); // Assuming the response has an array of districts
       } catch (error) {
@@ -36,12 +38,23 @@ const Search = () => {
 
     try {
       // Replace with the actual API URL and pass query parameters for bloodType, district, and location
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/public/search`, {
-        params: {
-          bloodType: bloodType,
-          district: district,
-        },
-      });
+      // const response = await axios.get(`${import.meta.env.VITE_API_URL}/public/search`, {
+      //   params: {
+      //     bloodType: bloodType,
+      //     district: district,
+      //   },
+      // });
+      const queryParams = {};
+
+      if (bloodType) queryParams.bloodType = bloodType;
+      if (district) queryParams.district = district;
+
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/public/search`,
+        {
+          params: queryParams,
+        }
+      );
 
       // Filter fetched data based on location and other criteria
       console.log(response.data);
@@ -58,8 +71,18 @@ const Search = () => {
       <h2>Blood Availability Search</h2>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px", display: "inline-block", textAlign: "left", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-      <label>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          marginBottom: "20px",
+          display: "inline-block",
+          textAlign: "left",
+          padding: "20px",
+          border: "1px solid #ccc",
+          borderRadius: "8px",
+        }}
+      >
+        <label>
           District:
           <select
             name="district"
@@ -70,8 +93,11 @@ const Search = () => {
             <option value="">Select District</option>
             {districts.length > 0 ? (
               districts.map((district, index) => (
-                <option key={index} value={district.name || district}> {/* Adjust depending on the API structure */}
-                  {district.name || district} {/* Adjust depending on the API structure */}
+                <option key={index} value={district.name || district}>
+                  {" "}
+                  {/* Adjust depending on the API structure */}
+                  {district.name || district}{" "}
+                  {/* Adjust depending on the API structure */}
                 </option>
               ))
             ) : (
@@ -79,7 +105,7 @@ const Search = () => {
             )}
           </select>
         </label>
-        
+
         <br />
         <label>
           Blood Type:
@@ -121,30 +147,60 @@ const Search = () => {
       {loading ? (
         <div>Loading...</div>
       ) : tableData.length > 0 ? (
-        <table style={{ marginTop: "30px", width: "80%", marginLeft: "auto", marginRight: "auto", borderCollapse: "collapse" }}>
+        <table
+          style={{
+            marginTop: "30px",
+            width: "80%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            borderCollapse: "collapse",
+          }}
+        >
           <thead>
             <tr>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Serial No.</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Hospital Name</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Blood Availability</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Quantity</th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Issue Date</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Serial No.
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Hospital Name
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Blood Availability
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Quantity
+              </th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+                Issue Date
+              </th>
             </tr>
           </thead>
           <tbody>
             {tableData.map((data, index) => (
               <tr key={index}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{index + 1}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{data.bloodBankName}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{data.bloodType}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{data.totalQuantity} ml</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{data.lastUpdated}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {index + 1}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {data.bloodBankName}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {data.bloodType}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {data.totalQuantity} ml
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {data.lastUpdated}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        <div style={{ marginTop: "30px", textAlign: "center" }}>No data found</div>
+        <div style={{ marginTop: "30px", textAlign: "center" }}>
+          No data found
+        </div>
       )}
     </div>
   );

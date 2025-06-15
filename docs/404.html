@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Get the full path after the repo name
+      const repoName = '/BloodHeroes'; // 👈 replace with your repo name
+      const currentPath = location.pathname;
+      const relativePath = currentPath.startsWith(repoName)
+        ? currentPath.slice(repoName.length)
+        : currentPath;
+
+      // Redirect to index.html but keep the path as query param
+      location.replace(`${repoName}/index.html?redirect=${relativePath}${location.search}${location.hash}`);
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+  </body>
+</html>
