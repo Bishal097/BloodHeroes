@@ -16,10 +16,9 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ Hook to detect route changes
+  const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // ✅ Re-check token on every route change
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     setIsLoggedIn(!!token);
@@ -27,7 +26,12 @@ function Navbar(props) {
 
   const handleDrawerToggle = () => setMobileOpen(prev => !prev);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+    setTimeout(() => {
+      document.getElementById('menu-button')?.focus(); // Optional: restore focus safely
+    }, 0);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
@@ -77,7 +81,13 @@ function Navbar(props) {
           </ListItem>
         )}
       </List>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        disableAutoFocusItem
+        disableRestoreFocus
+      >
         <MenuItem onClick={() => { handleClose(); navigate('/about'); }}>About BloodHeroes</MenuItem>
         <MenuItem onClick={() => { handleClose(); navigate('/gallery'); }}>Gallery</MenuItem>
         <MenuItem onClick={() => { handleClose(); navigate('/faq'); }}>Blood Heroes FAQ</MenuItem>
@@ -107,8 +117,14 @@ function Navbar(props) {
             Blood Heroes
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <Button sx={{ color: '#fff' }} onClick={handleClick}>About</Button>
-            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+            <Button id="menu-button" sx={{ color: '#fff' }} onClick={handleClick}>About</Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              disableAutoFocusItem
+              disableRestoreFocus
+            >
               <MenuItem onClick={() => { handleClose(); navigate('/about'); }}>About BloodHeroes</MenuItem>
               <MenuItem onClick={() => { handleClose(); navigate('/gallery'); }}>Gallery</MenuItem>
               <MenuItem onClick={() => { handleClose(); navigate('/faq'); }}>Blood Heroes FAQ</MenuItem>

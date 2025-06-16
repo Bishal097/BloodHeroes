@@ -1,19 +1,19 @@
-
 import React, { useState, useEffect } from "react";
 import { MDBInput, MDBBtn, MDBCheckbox } from "mdb-react-ui-kit";
-import { Link, useNavigate } from "react-router-dom";
-import HospitalDash from "./HospitalDash"; // Import the HospitalDash component
-import DonorDash from "./DonorDash"; // Import the DonorDash component
+import { useNavigate } from "react-router-dom";
+import HospitalDash from "./HospitalDash";
+import DonorDash from "./DonorDash";
 import axios from 'axios';
 import AdminDash from "./AdminDash";
 import logo from '../assets/images/logo.png';
+
 function LoginPage() {
   const [showForm, setShowForm] = useState(false);
-  const [email, setEmail] = useState(""); // For capturing email input
-  const [password, setPassword] = useState(""); // For capturing password input
-  const [errorMessage, setErrorMessage] = useState(""); // For displaying error messages
-  const [isSignUp, setIsSignUp] = useState(false); // Track whether user is on sign up page
-  const navigate = useNavigate(); // For navigation
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,92 +23,70 @@ function LoginPage() {
   }, []);
 
   const backgroundImage =
-  "https://upload.wikimedia.org/wikipedia/commons/f/f6/Blood_donation_%28at_a_%22bloodmobile%22%29.JPG";
-  
-  
+    "https://upload.wikimedia.org/wikipedia/commons/f/f6/Blood_donation_%28at_a_%22bloodmobile%22%29.JPG";
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!email || !password) {
-    setErrorMessage("Please fill in both email and password.");
-    return;
-  }
+    if (!email || !password) {
+      setErrorMessage("Please fill in both email and password.");
+      return;
+    }
 
-  setErrorMessage(""); // Clear error if fields are filled
+    setErrorMessage("");
 
-  const loginRequestData = {
-    email: email,
-    password: password,
+    const loginRequestData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/authenticate`, loginRequestData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.data.token) {
+        localStorage.setItem('authToken', JSON.stringify(response.data));
+        const userRole = response.data.role;
+
+        if (userRole === "ADMIN") {
+          navigate("/admin-dashboard");
+        } else if (userRole === "ORGANIZATION_MANAGER") {
+          navigate("/hospital-dashboard");
+        } else {
+          navigate("/user-dashboard");
+        }
+      } else {
+        setErrorMessage("Authentication failed.");
+      }
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data?.message || "An error occurred during authentication.");
+      } else if (error.request) {
+        setErrorMessage("No response from server. Please try again later.");
+      } else {
+        setErrorMessage("An error occurred while connecting to the server.");
+      }
+    }
   };
 
-  try {
-    console.log("Sending login request:", loginRequestData);
-
-    // Use Axios to make the POST request
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/authenticate`, loginRequestData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    console.log("Response Status:", response.status);
-    console.log("Response Data:", response.data);
-
-    // Check if the token is present
-    if (response.data.token) {
-      console.log("Authentication successful:", response.data);
-
-      // Store token in localStorage or handle it accordingly
-      localStorage.setItem('authToken', JSON.stringify(response.data));
-
-      // Check the role and navigate accordingly
-      const userRole = response.data.role;
-      if (userRole === "ADMIN") {
-        navigate("/admin-dashboard");
-      } else if (
-        userRole === "ORGANIZATION_MANAGER" 
-        
-      ) {
-        navigate("/hospital-dashboard");
-      } else {
-        navigate("/user-dashboard");
-      }
-    } else {
-      setErrorMessage("Authentication failed.");
-    }
-  } catch (error) {
-    // Handle error response
-    if (error.response) {
-      console.error("Response error:", error.response.status, error.response.data);
-      setErrorMessage(error.response.data?.message || "An error occurred during authentication.");
-    } else if (error.request) {
-      console.error("Request error: No response received", error.request);
-      setErrorMessage("No response from server. Please try again later.");
-    } else {
-      console.error("Error setting up request:", error.message);
-      setErrorMessage("An error occurred while connecting to the server.");
-    }
-  }
-};
-
-
   const handleSignUpClick = () => {
-    setIsSignUp(true); // Set state to show the signup options
+    setIsSignUp(true);
   };
 
   const handleDonorClick = () => {
-    // Navigate to Donor Sign Up page
     navigate("/donor-signup");
   };
 
   const handleOrganizationClick = () => {
-    // Navigate to Organization Sign Up page
     navigate("/organization-signup");
   };
 
   const handleforgotpassword = () => {
     navigate("/forgot-password");
-  }
+  };
 
   return (
     <div
@@ -132,7 +110,6 @@ function LoginPage() {
         }}
       ></div>
 
-      {/* Login Form */}
       <div
         style={{
           position: "absolute",
@@ -150,37 +127,21 @@ function LoginPage() {
           filter: "none",
         }}
       >
-        {/* Logo Image - Add image above the form */}
         <div style={{ textAlign: "center", marginBottom: "20px", marginLeft: "90px" }}>
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: "150px", height: "auto" }}
-          />
+          <img src={logo} alt="Logo" style={{ width: "150px", height: "auto" }} />
         </div>
 
         <h3 className="text-center mb-4">Sign In</h3>
 
-        {/* Error message */}
         {errorMessage && <p style={{ color: "red", textAlign: "center" }}>{errorMessage}</p>}
 
         {isSignUp ? (
           <div>
             <h4 className="text-center mb-4">Choose Your Role</h4>
-            <MDBBtn
-              color="primary"
-              size="lg"
-              className="w-100 mb-3"
-              onClick={handleDonorClick}
-            >
+            <MDBBtn color="primary" size="lg" className="w-100 mb-3" onClick={handleDonorClick}>
               Donor Registration
             </MDBBtn>
-            <MDBBtn
-              color="secondary"
-              size="lg"
-              className="w-100"
-              onClick={handleOrganizationClick}
-            >
+            <MDBBtn color="secondary" size="lg" className="w-100" onClick={handleOrganizationClick}>
               Organization Registration
             </MDBBtn>
           </div>
@@ -192,7 +153,7 @@ function LoginPage() {
               id="formControlEmail"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
+              onChange={(e) => setEmail(e.target.value)}
             />
             <MDBInput
               wrapperClass="mb-4"
@@ -200,17 +161,14 @@ function LoginPage() {
               id="formControlPassword"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update password state
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <div className="d-flex justify-content-between mb-4">
-              <MDBCheckbox
-                name="rememberMe"
-                value=""
-                id="rememberMe"
-                label="Remember me"
-              />
-              <a href="#" onClick={handleforgotpassword}>Forgot password?</a>
+              <MDBCheckbox name="rememberMe" value="" id="rememberMe" label="Remember me" />
+              <span onClick={handleforgotpassword} style={{ cursor: "pointer", color: "#0d6efd" }}>
+                Forgot password?
+              </span>
             </div>
 
             <MDBBtn className="w-100" size="lg" type="submit">
@@ -223,16 +181,24 @@ function LoginPage() {
           {isSignUp ? (
             <>
               Already have an account?{" "}
-              <a href="#" onClick={() => setIsSignUp(false)} className="text-primary">
+              <span
+                onClick={() => setIsSignUp(false)}
+                className="text-primary"
+                style={{ cursor: "pointer" }}
+              >
                 Sign In
-              </a>
+              </span>
             </>
           ) : (
             <>
               Don&apos;t have an account?{" "}
-              <a href="#" onClick={handleSignUpClick} className="text-primary">
+              <span
+                onClick={handleSignUpClick}
+                className="text-primary"
+                style={{ cursor: "pointer" }}
+              >
                 Sign Up
-              </a>
+              </span>
             </>
           )}
         </p>
@@ -242,4 +208,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
